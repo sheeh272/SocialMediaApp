@@ -1,0 +1,10 @@
+table {
+     border-spacing: 15px;
+     border-collapse: separate;
+     margin-left:auto;
+     margin-right:auto;
+}
+
+#container {
+    border-style: groove;
+}

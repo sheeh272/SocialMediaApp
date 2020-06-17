@@ -1,0 +1,16 @@
+<form (submit) = "createPost($event)">
+  <label> Create Post</label>
+  <input type="text" id = "contents"> <br><br>
+   <input type="submit" value="Submit">
+</form>
+
+<div id = "container">
+  <table>
+    <tr *ngFor="let post of posts">
+      <app-post
+        [author] = post.author.name
+        [contents] = post.contents >
+      </app-post>
+    </tr>
+  </table>
+</div>
