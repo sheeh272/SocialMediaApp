@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.List;
 import java.util.ArrayList;
-
+/*
 @Repository("UserDao")
 
 public class Prototype_UserAccessService implements UserDao{
@@ -56,3 +56,4 @@ public class Prototype_UserAccessService implements UserDao{
         return 0;
     }
 }
+*/

@@ -5,8 +5,10 @@ import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RequestMapping("api/v1/user")
@@ -43,4 +45,5 @@ public class UserController {
     public void updateUser(@PathVariable("id") UUID id, @RequestBody User user){
         userService.updateUser(id,user);
     }
+
 }

@@ -24,9 +24,11 @@ public class UserDataAccessService implements UserDao {
 
     @Override
     public int insertUser(UUID id, User user){
-        String sql = "INSERT INTO users(id,name,birthday) VALUES(?,?,?)";
+        String sql = "INSERT INTO users(id,displayName,birthday,loginName,passcode) VALUES(?,?,?,?,?)";
+        //if loginName is not unique it will throw an exception
         try {
-            jdbcTemplate.update(sql, id, user.getName(), user.getBirthday());
+            jdbcTemplate.update(sql, id, user.getDisplayName(),
+                    user.getBirthday(),user.getLoginName(),user.getPasscode());
             return 1;
         }
         catch (Exception e){
@@ -36,13 +38,13 @@ public class UserDataAccessService implements UserDao {
 
     @Override
     public List<User> selectAll_Users(){
-        String sql = "SELECT id, name, birthday FROM users";
+        String sql = "SELECT id, displayName, birthday FROM users";
         return jdbcTemplate.query(sql,new UserRowMapper());
     }
 
     @Override
     public Optional<User> selectUser(UUID id) {
-        String sql = "SELECT id, name, birthday FROM users WHERE id = ?";
+        String sql = "SELECT id, displayName, birthday FROM users WHERE id = ?";
         return Optional.of(jdbcTemplate.queryForObject(sql,new Object[]{id}, new UserRowMapper()));
     }
 
@@ -66,13 +68,27 @@ public class UserDataAccessService implements UserDao {
 
     @Override
     public int updateUser(UUID id, User user) {
-        String sql = "UPDATE users SET id = ?, name = ?, birthday = ?  WHERE id = ?";
+        String sql = "UPDATE users SET id = ?, displayName = ?, birthday = ?  WHERE id = ?";
         try {
-            jdbcTemplate.update(sql, id, user.getName(), user.getBirthday(),id);
+            jdbcTemplate.update(sql, id, user.getDisplayName(), user.getBirthday(),id);
             return 1;
         }
         catch (Exception e){
             return 0;
         }
     }
+
+    @Override
+
+    public Optional<User> validateUser(String username, String passcode){
+        String sql = "SELECT id, displayName, birthday FROM users WHERE loginName = ? AND passcode = ?";
+        List<User> test = jdbcTemplate.query(sql,new Object[]{username,passcode},new UserRowMapper());
+        if(test.size() == 1) {
+            return Optional.of(test.get(0));
+        }
+        else {
+            return Optional.empty();
+        }
+    }
+
 }

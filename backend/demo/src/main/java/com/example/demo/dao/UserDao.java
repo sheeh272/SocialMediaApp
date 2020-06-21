@@ -21,4 +21,6 @@ public interface UserDao {
     int deleteUser(UUID id);
 
     int updateUser(UUID id, User user);
+
+    Optional<User> validateUser(String username, String passcode);
 }

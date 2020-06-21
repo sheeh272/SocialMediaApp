@@ -10,13 +10,21 @@ import { PostTimeLineComponent } from './post-time-line/post-time-line.component
 import {  PostService} from "./services/post.service";
 import {  UserService} from "./services/user.service";
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { UserProfilePageComponent } from './user-profile-page/user-profile-page.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { CookieService } from 'ngx-cookie-service';
+import {  AuthService} from "./services/auth.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     UserInfoComponent,
     PostComponent,
-    PostTimeLineComponent
+    PostTimeLineComponent,
+    LoginComponent,
+    UserProfilePageComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +32,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [PostService,UserService],
+  providers: [PostService,UserService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,7 +8,7 @@
   <table>
     <tr *ngFor="let post of posts">
       <app-post
-        [author] = post.author.name
+        [author] = post.author.displayName
         [contents] = post.contents >
       </app-post>
     </tr>

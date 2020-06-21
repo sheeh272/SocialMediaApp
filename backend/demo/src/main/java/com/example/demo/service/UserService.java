@@ -32,4 +32,8 @@ public class UserService {
     public int deleteUser(UUID id) {return userDao.deleteUser(id);}
 
     public int updateUser(UUID id, User user) {return userDao.updateUser(id,user);}
+
+    public  Optional<User> validateUser(String username, String passcode){
+        return userDao.validateUser(username,passcode);
+    }
 }

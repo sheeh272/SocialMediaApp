@@ -1,0 +1,20 @@
+<div>
+  <form (submit) = "register($event)">
+    <label for ="username">  Username </label>
+    <input class = "field" type="text" id = "username" name = "username"> <br><br>
+    <label for ="passcode">  Passcode</label>
+    <input class = "field" type="text" id = "passcode" name = "passcode"> <br><br>
+    <label for ="confirmPasscode">Confirm Passcode</label>
+    <input class = "field" type="text" id = "confirmPasscode" name = "confirmPasscode"> <br><br>
+
+    <label for = "birthday"> Birthday </label>
+    <input class = "field" type="text" id = "birthday" name = "birthday"> <br><br>
+
+    <label for = "displayName"> displayName </label>
+    <input class = "field" type="text" id = "displayName" name = "displayName"> <br><br>
+
+    <input class="btn btn-primary" type="submit" value="Submit">
+    <span> </span>
+    <a class="btn btn-primary" routerLink="/login" routerLinkActive="active">Login</a>
+  </form>
+</div>
