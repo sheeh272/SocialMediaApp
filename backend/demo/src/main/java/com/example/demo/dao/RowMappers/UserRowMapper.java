@@ -16,6 +16,7 @@ public class UserRowMapper implements RowMapper<User>{
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
         UUID id = UUID.fromString(rs.getString("id"));
         String displayName = rs.getString("displayName");
+        String loginName = rs.getString("loginName");
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date birthday;
@@ -26,7 +27,7 @@ public class UserRowMapper implements RowMapper<User>{
             birthday = null;
         }
 
-        User user = new User(id,displayName,birthday);
+        User user = new User(id,displayName,birthday,loginName);
 
         return user;
 

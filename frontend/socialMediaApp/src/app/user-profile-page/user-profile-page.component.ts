@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService} from "../services/auth.service";
 import { CookieService } from 'ngx-cookie-service';
 import { UserService} from "../services/user.service";
+import { PostService} from "../services/post.service";
 
 @Component({
   selector: 'app-user-profile-page',
@@ -11,11 +12,13 @@ import { UserService} from "../services/user.service";
 })
 export class UserProfilePageComponent implements OnInit {
 
+  posts;
   name: string;
   birthday: string;
 
   constructor(private route: ActivatedRoute,private userService: UserService,
-  private cookieService: CookieService,private authService: AuthService) { }
+  private cookieService: CookieService,private authService: AuthService,
+  private postService :PostService) { }
 
   ngOnInit(): void {
     this.authService.getUserId().subscribe(id => {
@@ -23,6 +26,8 @@ export class UserProfilePageComponent implements OnInit {
          this.name = data['displayName'];
          this.birthday = data['birthday']
        });
+       this.postService.getPostsOfUser(id).subscribe(data => {
+       this.posts = data;});
      });
   }
 

@@ -15,6 +15,10 @@ import { UserProfilePageComponent } from './user-profile-page/user-profile-page.
 import { RegistrationComponent } from './registration/registration.component';
 import { CookieService } from 'ngx-cookie-service';
 import {  AuthService} from "./services/auth.service";
+import { HomePageComponent } from './home-page/home-page.component';
+import { SearchComponent } from './search/search.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import {  AuthService} from "./services/auth.service";
     PostTimeLineComponent,
     LoginComponent,
     UserProfilePageComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    HomePageComponent,
+    SearchComponent,
+    SearchResultComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

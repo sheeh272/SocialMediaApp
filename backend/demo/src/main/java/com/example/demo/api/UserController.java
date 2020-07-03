@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping
-    public  void addUser(@RequestBody User user){
+    public void addUser(@RequestBody User user){
         userService.addUser(user);
     }
 
@@ -44,6 +44,21 @@ public class UserController {
     @PutMapping(path = "{id}")
     public void updateUser(@PathVariable("id") UUID id, @RequestBody User user){
         userService.updateUser(id,user);
+    }
+
+    @GetMapping(params = {"userId"})
+    public List<UUID> getFriends(@RequestParam UUID userId){
+        return userService.getFriends(userId);
+    }
+
+    @PostMapping(params = {"newFriend","userId"})
+    public int addFriend(@RequestParam UUID newFriend, @RequestParam UUID userId){
+        return userService.addFriend(newFriend, userId);
+    }
+
+    @GetMapping(params = {"name"})
+    public List<User>getUserByName(@RequestParam String name){
+        return userService.getUserByName(name);
     }
 
 }

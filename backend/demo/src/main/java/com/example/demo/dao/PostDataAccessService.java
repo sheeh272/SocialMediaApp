@@ -35,20 +35,20 @@ public class PostDataAccessService implements PostDao{
 
     @Override
     public  List<Post> getAllPosts(){
-        String sql = "SELECT users.id, displayName, birthday, posts.id AS postId, author_id, contents FROM posts LEFT OUTER JOIN users ON posts.author_id = users.id";
+        String sql = "SELECT users.id, displayName, birthday, loginName, posts.id AS postId, author_id, contents FROM posts LEFT OUTER JOIN users ON posts.author_id = users.id";
         return jdbcTemplate.query(sql,new PostRowMapper());
     }
 
     @Override
     public List<Post> selectUserPosts(UUID user_id){
-        String sql = "SELECT users.id, displayName, birthday, posts.id AS postId, author_id, contents FROM posts LEFT OUTER JOIN users ON posts.author_id = users.id WHERE posts.author_id = ?";
+        String sql = "SELECT users.id, displayName, birthday, loginName, posts.id AS postId, author_id, contents FROM posts LEFT OUTER JOIN users ON posts.author_id = users.id WHERE posts.author_id = ?";
         System.out.println(user_id);
         return jdbcTemplate.query(sql,new Object[]{user_id},new PostRowMapper());
     }
 
     @Override
     public Optional<Post> selectPost(UUID id){
-        String sql = "SELECT users.id, displayName, birthday, posts.id AS postId, author_id, contents FROM posts LEFT OUTER JOIN users ON posts.author_id = users.id WHERE posts.id = ?";
+        String sql = "SELECT users.id, displayame, birthday, loginName, posts.id AS postId, author_id, contents FROM posts LEFT OUTER JOIN users ON posts.author_id = users.id WHERE posts.id = ?";
         return Optional.of(jdbcTemplate.queryForObject(sql,new Object[]{id}, new PostRowMapper()));
     }
 

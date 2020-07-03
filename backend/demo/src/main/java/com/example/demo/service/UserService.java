@@ -36,4 +36,16 @@ public class UserService {
     public  Optional<User> validateUser(String username, String passcode){
         return userDao.validateUser(username,passcode);
     }
+
+    public List<UUID> getFriends(UUID userId){
+        return userDao.getFriends(userId);
+    }
+
+    public int addFriend(UUID newFriend, UUID userId){
+        return userDao.addFriend(newFriend, userId);
+    }
+
+    public List<User> getUserByName(String name){
+        return userDao.getUserByName(name);
+    }
 }

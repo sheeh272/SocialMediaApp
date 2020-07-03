@@ -9,3 +9,8 @@
   background-color: #00E1D9;
   text-align: center;
 }
+
+#profilePicture {
+   max-width: 20%;
+   max-height: 20%
+}

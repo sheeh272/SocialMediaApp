@@ -1,4 +1,21 @@
+
+
 <div id = "container">
+  <!--citation for code snippet below
+  //Soumitra Roy
+  //May 7th 2020
+  //How to upload and display image using Angular 8
+  //version 1
+  //https://www.roytuts.com/how-to-upload-and-display-image-using-angular/
+  -->
+  <div style="text-align:center">
+  	<div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
+  	<div><img id = "profilePicture" [src]="url" *ngIf="url"></div>
+  	<p>
+  		<input type="file" (change)="selectFile($event)">
+  	</p>
+  </div>
+  <!--end of code snippet.  Below is original code -->
   <h1 class = "element">User Data</h1>
   <div class = "element">
     <h2> Name: {{name}}</h2>

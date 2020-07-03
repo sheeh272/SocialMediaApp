@@ -20,7 +20,7 @@ public class JWTDataAccessService implements JWTDao{
     }
 
     public boolean validateUser(String username, String passcode){
-        String sql = "SELECT id, displayName, birthday FROM users WHERE loginName = ? AND passcode = ?";
+        String sql = "SELECT id, displayName, birthday, loginName FROM users WHERE loginName = ? AND passcode = ?";
         List<User> test = jdbcTemplate.query(sql,new Object[]{username,passcode},new UserRowMapper());
         if(test.size() == 1) {
             return true;
@@ -31,7 +31,7 @@ public class JWTDataAccessService implements JWTDao{
     }
 
     public UUID getUserId(String userName){
-        String sql = "SELECT id, displayName, birthday FROM users WHERE loginName = ?";
+        String sql = "SELECT id, displayName, birthday, loginName FROM users WHERE loginName = ?";
         User user = jdbcTemplate.queryForObject(sql,new Object[]{userName},new UserRowMapper());
         return user.getId();
     }

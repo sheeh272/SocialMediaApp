@@ -34,4 +34,26 @@ export class UserService {
     return this.http.get<any>(`/api/v1/user/${id}`,{'headers':headers});
   }
 
+  getFriendsList(id : String){
+    let headers: HttpHeaders = new HttpHeaders();
+    let token: String = this.cookieService.get("Jwt");
+    headers = headers.append('Authorization',  `Bearer ${token}`);
+    return this.http.get<any>(`/api/v1/user/?userId=${id}`,{'headers':headers});
+  }
+
+  getUserFromName(name: String){
+    let headers: HttpHeaders = new HttpHeaders();
+    let token: String = this.cookieService.get("Jwt");
+    headers = headers.append('Authorization',  `Bearer ${token}`);
+    return this.http.get<any>(`/api/v1/user/?name=${name}`,{'headers':headers});
+  }
+
+
+  addFriend(friendId: String, id: String){
+    let headers: HttpHeaders = new HttpHeaders();
+    let token: String = this.cookieService.get("Jwt");
+    headers = headers.append('Authorization',  `Bearer ${token}`);
+    return this.http.post<any>(`/api/v1/user/?newFriend=${friendId}&userId=${id}`,null,{'headers':headers});
+  }
+
 }

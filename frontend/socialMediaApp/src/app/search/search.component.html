@@ -1,0 +1,20 @@
+<app-nav-bar> </app-nav-bar>
+
+<br><br>
+
+<form (submit) = "searchUser($event)">
+  <label> Search For User</label>
+  <input type="text" id = "contents"> <br>
+  <input type="submit" value="Submit">
+</form>
+
+<table *ngIf = searchInitiated>
+  <tr *ngFor="let user of users">
+    <app-search-result
+    [name] = user.name
+    [image] = user.image
+    [otherUsersId] = user.id
+    [id] = id >
+    </app-search-result>
+  </tr>
+</table>

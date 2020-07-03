@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
       if(data){
         this.cookieService.set("Jwt",data['token']);
         this.router.navigate(['/main']);
+        //this.router.navigate(['/home']);
       }
       else {
         alert("UserName or passcode not found");

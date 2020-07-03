@@ -23,4 +23,11 @@ export class PostService {
       headers=headers.append('content-type', 'application/json');
       return this.http.post<any>('/api/v1/post', postData , {'headers':headers});
     }
+
+    getPostsOfUser(id : String){
+      let headers: HttpHeaders = new HttpHeaders();
+      let token: String = this.cookieService.get("Jwt");
+      headers = headers.append('Authorization',  `Bearer ${token}`);
+      return this.http.get<any>(`/api/v1/post/?userId=${id}`,{'headers':headers});
+    }
 }

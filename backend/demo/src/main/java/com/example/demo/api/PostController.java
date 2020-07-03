@@ -35,12 +35,12 @@ public class PostController {
 //    }
 
     @GetMapping
-    public List<Post> getUserPosts(@RequestParam(required = false) UUID user_id){
-        if(user_id == null) {
+    public List<Post> getUserPosts(@RequestParam(required = false) UUID userId){
+        if(userId == null) {
             return postService.getAllPosts();
         }
         else{
-            return postService.getUserPosts(user_id);
+            return postService.getUserPosts(userId);
         }
     }
 

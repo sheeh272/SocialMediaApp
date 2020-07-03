@@ -3,6 +3,7 @@ package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.Date;
 
@@ -15,6 +16,8 @@ public class User {
 
     private String loginName;
     private String passcode;
+
+    private List<UUID> friendsList;
 
     public User(@JsonProperty("id") UUID id, @JsonProperty("displayName") String displayName,
                 @JsonProperty("birthday") Date birthday, @JsonProperty("loginName") String loginName,
@@ -30,6 +33,13 @@ public class User {
         this.displayName = displayName;
         this.id = id;
         this.birthday = birthday;
+    }
+
+    public User(UUID id, String displayName, Date birthday, String loginName){
+        this.displayName = displayName;
+        this.id = id;
+        this.birthday = birthday;
+        this.loginName = loginName;
     }
 
     public UUID getId() {
@@ -66,5 +76,13 @@ public class User {
 
     public void setPasscode(String passcode) {
         this.passcode = passcode;
+    }
+
+    public List<UUID> getFriendsList() {
+        return friendsList;
+    }
+
+    public void addFriend(UUID newFriend){
+        friendsList.add(newFriend);
     }
 }
