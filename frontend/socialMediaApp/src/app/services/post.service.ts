@@ -30,4 +30,20 @@ export class PostService {
       headers = headers.append('Authorization',  `Bearer ${token}`);
       return this.http.get<any>(`/api/v1/post/?userId=${id}`,{'headers':headers});
     }
+
+    deletePost(id : String){
+      let headers: HttpHeaders = new HttpHeaders();
+      let token: String = this.cookieService.get("Jwt");
+      headers = headers.append('Authorization',  `Bearer ${token}`);
+      return this.http.delete<any>(`/api/v1/post/${id}`,{'headers':headers});
+    }
+
+    editPost(id : String, postData: string) {
+      let headers: HttpHeaders = new HttpHeaders();
+      let token: String = this.cookieService.get("Jwt");
+      headers = headers.append('Authorization',  `Bearer ${token}`);
+      headers=headers.append('content-type', 'application/json');
+      return this.http.put<any>(`/api/v1/post/${id}`, postData ,{'headers':headers});
+    }
+
 }

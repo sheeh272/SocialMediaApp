@@ -11,3 +11,28 @@
 #container {
     border-style: groove;
 }
+
+#editAlert {
+  display: none;
+  position: absolute;
+  z-index: 9999;
+  background-color: grey;
+  border: 1px solid #aaa;
+  left: 80%;
+  top: 0%;
+}
+
+#editAlert form label{
+  color: #F5F5F5;
+  font-size: 20px;
+}
+
+#editContents {
+  font-size: 45px;
+  text-align: center;
+}
+
+#exit {
+  position: absolute;
+  left: 89%
+}

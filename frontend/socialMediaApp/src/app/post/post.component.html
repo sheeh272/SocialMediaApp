@@ -1,3 +1,12 @@
+
+<div *ngIf ="isAuthor">
+  <button type="button" name="delete" (click) = deletePost()>
+    Delete Post
+  </button>
+  <button type="button" name="edit" (click) = editPost()>
+    Edit Post
+  </button>
+</div>
 <div id = "container">
   <div id = "author">
     User: {{author}}
@@ -6,4 +15,15 @@
   <div id = "contents">
     {{contents}}
   </div>
+</div>
+
+<div id = "editAlert">
+  <button id = "exit" type="button" name="exit" (click) = "exitEdit($event)">
+    exit
+  </button>
+  <form (submit) = "submitEdit($event)">
+    <label> Edit Post</label>
+    <input type="text" id = "editContents"> <br><br>
+     <input type="submit" value="Submit">
+  </form>
 </div>

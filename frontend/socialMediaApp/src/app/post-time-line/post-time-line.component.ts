@@ -23,6 +23,7 @@ interface Post {
 })
 export class PostTimeLineComponent implements OnInit {
   @Input() posts;
+  @Input() isAuthor;
   //@Input() name;
   //@Input() birthday;
 

@@ -9,7 +9,10 @@
     <tr *ngFor="let post of posts">
       <app-post
         [author] = post.author.displayName
-        [contents] = post.contents >
+        [contents] = post.contents
+        [isAuthor] = isAuthor
+        [postId] = post.id
+        [user] = user>
       </app-post>
     </tr>
   </table>
