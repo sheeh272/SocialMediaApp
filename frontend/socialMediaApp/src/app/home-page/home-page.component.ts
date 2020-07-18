@@ -24,13 +24,29 @@ export class HomePageComponent implements OnInit {
          for (i of friendsList){
            this.postService.getPostsOfUser(i).subscribe(userPosts =>{
              for (j of userPosts){
-               this.posts.push(j);
+               //this.posts.push(j);
+               this.add(this.posts,j);
              }
            });
           console.log(this.posts);
          }
        });
      });
+  }
+
+  //this allows posts to be added in order of date created
+  add(postList,post){
+    let added = false;
+    for(let i = 0; i < postList.length; i++){
+      if(postList[i]['datePosted'] > post['datePosted']){
+        postList.splice(i, 0, post);
+        added = true;
+        break;
+      }
+    }
+    if(!added){
+      postList.push(post);
+    }
   }
 
 }

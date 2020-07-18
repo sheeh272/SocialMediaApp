@@ -12,7 +12,7 @@
     border-style: groove;
 }
 
-#editAlert {
+.editAlert {
   display: none;
   position: absolute;
   z-index: 9999;

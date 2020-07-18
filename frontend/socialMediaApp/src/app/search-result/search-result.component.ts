@@ -29,10 +29,21 @@ export class SearchResultComponent implements OnInit {
   addFriend(){
     this.userService.addFriend(this.otherUsersId,this.id).subscribe(data => {
         if(data){
-          alert("added friend Succesfully");
+          alert("Added friend Succesfully");
         }
         else{
-          alert("something went wrong");
+          alert("Something went wrong.  You may already be friends");
+        }
+    });
+  }
+
+  deleteFriend(){
+    this.userService.deleteFriend(this.otherUsersId,this.id).subscribe(data => {
+        if(data){
+          alert("Deleted friend Succesfully");
+        }
+        else{
+          alert("Something went wrong");
         }
     });
   }

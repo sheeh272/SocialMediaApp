@@ -45,6 +45,10 @@ public class UserService {
         return userDao.addFriend(newFriend, userId);
     }
 
+    public int deleteFriend(UUID friendToDelete, UUID userId){
+        return userDao.deleteFriend(friendToDelete,userId);
+    }
+
     public List<User> getUserByName(String name){
         return userDao.getUserByName(name);
     }

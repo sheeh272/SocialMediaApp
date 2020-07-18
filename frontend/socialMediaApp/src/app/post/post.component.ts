@@ -28,7 +28,9 @@ export class PostComponent implements OnInit {
 
   constructor(private http: HttpClient, private postService: PostService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //console.log(this.postId);
+  }
 
   deletePost(){
     this.postService.deletePost(this.postId).subscribe(data => {
@@ -39,15 +41,18 @@ export class PostComponent implements OnInit {
   }
 
   editPost(){
-    document.getElementById('editAlert').style.display = "block";
+    //document.getElementById('editAlert').style.display = "block";
+      document.getElementById(this.postId).style.display = "block";
   }
 
   submitEdit(event){
     const target  = event.target;
+    //const content = target.querySelector('#editContents').value;
     const content = target.querySelector('#editContents').value;
     let post: Post = {"author": this.user, "contents": content};
     let data = JSON.stringify(post);
-    document.getElementById('editAlert').style.display = "none";
+    //document.getElementById('editAlert').style.display = "none";
+    document.getElementById(this.postId).style.display = "none";
     this.postService.editPost(this.postId, JSON.stringify(post)).subscribe(data => {
       console.log(data);});
   }

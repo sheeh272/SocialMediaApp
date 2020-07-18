@@ -29,5 +29,7 @@ public interface UserDao {
 
     int addFriend(UUID newFriend, UUID userId);
 
+    int deleteFriend(UUID friendToDelete, UUID userId);
+
     List<User> getUserByName(String name);
 }

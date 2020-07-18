@@ -56,6 +56,11 @@ public class UserController {
         return userService.addFriend(newFriend, userId);
     }
 
+    @PostMapping(params = {"friendToDelete","userId"})
+    public int deleteFriend(@RequestParam UUID friendToDelete, @RequestParam UUID userId){
+        return userService.deleteFriend(friendToDelete, userId);
+    }
+
     @GetMapping(params = {"name"})
     public List<User>getUserByName(@RequestParam String name){
         return userService.getUserByName(name);

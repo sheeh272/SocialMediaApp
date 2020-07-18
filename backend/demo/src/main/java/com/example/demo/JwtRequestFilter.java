@@ -40,19 +40,19 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         //String originalUri = String.valueOf(request.getAttribute(RequestDispatcher.FORWARD_REQUEST_URI));
-        System.out.println(getFullURL(request));
+        //System.out.println(getFullURL(request));
 
         final String requestTokenHeader = request.getHeader("Authorization");
-        System.out.println(requestTokenHeader);
+        //System.out.println(requestTokenHeader);
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             String jwtToken = requestTokenHeader.substring(7);
-            System.out.println(jwtToken);
-            System.out.println(JWTService.validateToken(key,jwtToken));
+            //System.out.println(jwtToken);
+            //System.out.println(JWTService.validateToken(key,jwtToken));
             if(JWTService.validateToken(key,jwtToken)){
                 String user = JWTService.getSubject(key,jwtToken);
-                System.out.println(user);
+                //System.out.println(user);
                 String passcode = JWTService.getPasscode(key,jwtToken);
-                System.out.println(passcode);
+                //System.out.println(passcode);
                 List<GrantedAuthority> grantedAuths = new ArrayList<>();
                 grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(

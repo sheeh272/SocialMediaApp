@@ -114,12 +114,36 @@ public class UserDataAccessService implements UserDao {
 
     @Override
     public int addFriend(UUID newFriend, UUID userId){
-        String sql = "UPDATE users SET friendsList = array_append(friendsList, ?) WHERE id = ?";
-        try {
-            jdbcTemplate.update(sql,newFriend,userId);
-            return 1;
+        //check if already friends
+        List<UUID> friends = getFriends(userId);
+        boolean isFriends = false;
+        if(friends != null) {
+            for (int i = 0; i < friends.size(); i++) {
+                if (friends.get(i).equals(newFriend)) {
+                    isFriends = true;
+                }
+            }
         }
-        catch (Exception e){
+        //add friend if not already friends
+        if(!isFriends) {
+            String sql = "UPDATE users SET friendsList = array_append(friendsList, ?) WHERE id = ?";
+            try {
+                jdbcTemplate.update(sql, newFriend, userId);
+                return 1;
+            } catch (Exception e) {
+                return 0;
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public int deleteFriend(UUID friendToDelete, UUID userId){
+        String sql = "UPDATE users SET friendsList = array_remove(friendsList, ?) WHERE id = ?";
+        try {
+            jdbcTemplate.update(sql, friendToDelete, userId);
+            return 1;
+        } catch (Exception e) {
             return 0;
         }
     }

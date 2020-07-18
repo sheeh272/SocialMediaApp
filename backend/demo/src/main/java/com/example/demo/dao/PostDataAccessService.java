@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,9 +24,10 @@ public class PostDataAccessService implements PostDao{
 
     @Override
     public int insertPost(UUID id, Post post){
-        String sql = "INSERT INTO posts(id,author_id,contents) VALUES(?,?,?)";
+        String sql = "INSERT INTO posts(id,author_id,contents,datePosted) VALUES(?,?,?,?)";
         try {
-            jdbcTemplate.update(sql, id, post.getAuthor().getId(), post.getContents());
+            java.sql.Timestamp datePosted = new java.sql.Timestamp(post.getDatePosted());
+            jdbcTemplate.update(sql, id, post.getAuthor().getId(), post.getContents(), datePosted);
             return 1;
         }
         catch (Exception e){
@@ -35,20 +37,24 @@ public class PostDataAccessService implements PostDao{
 
     @Override
     public  List<Post> getAllPosts(){
-        String sql = "SELECT users.id, displayName, birthday, loginName, posts.id AS postId, author_id, contents FROM posts LEFT OUTER JOIN users ON posts.author_id = users.id";
+        String sql = "SELECT users.id, displayName, birthday, loginName, posts.id AS postId, author_id, contents, datePosted" +
+                " FROM posts LEFT OUTER JOIN users ON posts.author_id = users.id";
         return jdbcTemplate.query(sql,new PostRowMapper());
     }
 
     @Override
     public List<Post> selectUserPosts(UUID user_id){
-        String sql = "SELECT users.id, displayName, birthday, loginName, posts.id AS postId, author_id, contents FROM posts LEFT OUTER JOIN users ON posts.author_id = users.id WHERE posts.author_id = ?";
+        String sql = "SELECT users.id, displayName, birthday, loginName, posts.id AS postId, author_id, contents, datePosted" +
+                " FROM posts LEFT OUTER JOIN users ON posts.author_id = users.id WHERE posts.author_id = ?" +
+                "ORDER BY datePosted ASC";
         System.out.println(user_id);
         return jdbcTemplate.query(sql,new Object[]{user_id},new PostRowMapper());
     }
 
     @Override
     public Optional<Post> selectPost(UUID id){
-        String sql = "SELECT users.id, displayName, birthday, loginName, posts.id AS postId, author_id, contents FROM posts LEFT OUTER JOIN users ON posts.author_id = users.id WHERE posts.id = ?";
+        String sql = "SELECT users.id, displayName, birthday, loginName, posts.id AS postId, author_id, contents, datePosted" +
+                " FROM posts LEFT OUTER JOIN users ON posts.author_id = users.id WHERE posts.id = ?";
         return Optional.of(jdbcTemplate.queryForObject(sql,new Object[]{id}, new PostRowMapper()));
     }
 
@@ -82,4 +88,5 @@ public class PostDataAccessService implements PostDao{
             return 0;
         }
     }
+
 }

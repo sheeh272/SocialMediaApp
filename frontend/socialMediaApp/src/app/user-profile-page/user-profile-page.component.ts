@@ -27,7 +27,9 @@ export class UserProfilePageComponent implements OnInit {
          this.birthday = data['birthday']
        });
        this.postService.getPostsOfUser(id).subscribe(data => {
-       this.posts = data;});
+       this.posts = data;
+       console.log(this.posts)
+     });
      });
   }
 

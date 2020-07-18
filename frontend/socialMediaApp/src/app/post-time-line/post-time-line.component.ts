@@ -33,6 +33,7 @@ export class PostTimeLineComponent implements OnInit {
   private authService: AuthService) { }
 
   ngOnInit(): void {
+    //console.log(this.posts);
     this.authService.getUserId().subscribe(id => {
        this.userService.getUserDataFromId(id).subscribe(data => {
          this.user.id = data['id']
@@ -56,4 +57,5 @@ export class PostTimeLineComponent implements OnInit {
     this.postService.sendPostData(JSON.stringify(post)).subscribe(data => {
     console.log(data);});
   }
+
 }

@@ -56,4 +56,11 @@ export class UserService {
     return this.http.post<any>(`/api/v1/user/?newFriend=${friendId}&userId=${id}`,null,{'headers':headers});
   }
 
+  deleteFriend(friendId: String, id: String){
+    let headers: HttpHeaders = new HttpHeaders();
+    let token: String = this.cookieService.get("Jwt");
+    headers = headers.append('Authorization',  `Bearer ${token}`);
+    return this.http.post<any>(`/api/v1/user/?friendToDelete=${friendId}&userId=${id}`,null,{'headers':headers});
+  }
+
 }

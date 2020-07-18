@@ -24,8 +24,10 @@ public class PostRowMapper implements RowMapper<Post> {
 
         UUID post_id = UUID.fromString(rs.getString("postId"));
         String content = rs.getString("contents");
-        Post post = new Post(post_id,user,content);
-
+        Date datePosted = new Date(rs.getTimestamp("datePosted").getTime());
+        //System.out.println(datePosted.toString());
+        Post post = new Post(post_id,user,content,datePosted);
+        //System.out.println(post.getDatePosted().getTime());
         return post;
     }
 }
