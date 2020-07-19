@@ -10,3 +10,13 @@ table {
     white-space: pre-wrap;
     word-break: break-all; word-wrap: break-word
 }
+
+#contents {
+  width: 700px;
+  height: 100px;
+}
+
+form label {
+  font-size: 20px;
+  font-weight: 700;
+}

@@ -32,7 +32,13 @@ export class RegistrationComponent implements OnInit {
     "loginName" : username, "passcode": passcode};
     console.log(user);
     this.userService.registerUser(JSON.stringify(user)).subscribe(data => {
-    console.log(data);});
+      if(data){
+        alert("Successfully Registered");
+      }
+      else{
+        alert("Something went wrong");
+      }
+    });
   }
 
 }

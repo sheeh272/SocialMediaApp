@@ -55,7 +55,8 @@ export class PostTimeLineComponent implements OnInit {
     let data = JSON.stringify(post);
     console.log(data);
     this.postService.sendPostData(JSON.stringify(post)).subscribe(data => {
-    console.log(data);});
+      location.reload();
+    });
   }
 
 }

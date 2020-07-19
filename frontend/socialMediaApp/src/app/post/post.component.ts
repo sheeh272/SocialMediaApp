@@ -54,7 +54,8 @@ export class PostComponent implements OnInit {
     //document.getElementById('editAlert').style.display = "none";
     document.getElementById(this.postId).style.display = "none";
     this.postService.editPost(this.postId, JSON.stringify(post)).subscribe(data => {
-      console.log(data);});
+      location.reload();
+    });
   }
 
   exitEdit(event){

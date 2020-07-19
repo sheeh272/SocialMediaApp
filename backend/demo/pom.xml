@@ -28,12 +28,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -84,7 +78,21 @@
             <version>2.5</version>
         </dependency>
 
-	</dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13-rc-1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>2.0.1-beta</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
 
 	<build>
 		<plugins>
